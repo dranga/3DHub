@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+	{% block head %}{% endblock %}
+	
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+ 	<!-- Custom styles for this template -->
+ 	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+ 	<style type="text/css">
+		h2{
+		    margin: 0;     
+		    color: #666;
+		    padding-top: 90px;
+		    font-size: 52px;
+		    font-family: "trebuchet ms", sans-serif;    
+		}
+		.item{
+		    background: #333;    
+		    text-align: center;
+		    height: 500px !important;
+		}
+		.carousel{
+		    margin-top: 20px;
+		}
+		.bs-example{
+			margin: 20px;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="row">
+		<div class="large-12 columns">
+			{% block body %}{% endblock %}
+		</div>
+	</div>
+</body>
+</html>
