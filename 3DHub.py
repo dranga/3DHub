@@ -47,6 +47,7 @@ if __name__ == "__main__":
 	parser.add_argument("username", help = "Github username")
 	parser.add_argument("repo", help = "Github repository")
 	parser.add_argument("branch", help = "Github branch")
+	parser.add_argument("auth", help = "Github Personal token")
 	args = parser.parse_args()
 
 	port = int(args.port)
@@ -61,10 +62,8 @@ if __name__ == "__main__":
 	githubBranch = args.branch
 
 	global githubAuth
-	githubAuth = getpass.getpass("Github Personal access token : ")
-
-	global githubBlob
-	githubBlob = {'user' : githubUser,'repo' : githubRepo,'branch' : githubBranch,'auth' : githubAuth}
+	#githubAuth = getpass.getpass("Github Personal access token : ")
+	githubAuth = args.auth
 
 	global gh
 	gh = githubHelper.githubHelper(githubUser, githubRepo, githubBranch, githubAuth)

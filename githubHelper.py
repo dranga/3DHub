@@ -14,17 +14,20 @@ class Model:
 		self.url = url
 
 class githubHelper(object):
-	def __init__(self, username, repo, branch, password = None):
+	def __init__(self, username, repo, branch, auth = None):
 		self.username = username
 		self.repo = repo
 		self.branch = branch
-		self.password = password
+		self.auth = auth
 
 	def getGithubModels(self):
 		#check if enough time has passed
 		if(self.rateCheck):
 			#fetch files from repo/branch and stl folder
-			data = requests.get('https://api.github.com/repos/'+ self.username +'/' + self.repo + '/contents/stl', auth=HTTPBasicAuth(self.username, self.password))
+			if(self.auth == None):
+				data = requests.get('https://api.github.com/repos/'+ self.username +'/' + self.repo + '/contents/stl')
+			else:
+				data = requests.get('https://api.github.com/repos/'+ self.username +'/' + self.repo + '/contents/stl', auth=HTTPBasicAuth(self.auth, ""))
 			data = data.json()
 			files = list()
 			for elem in data:
